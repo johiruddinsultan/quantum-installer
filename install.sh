@@ -10,8 +10,8 @@ UPDATE_ONLY=0
 UPDATE_PYTHON=0
 VERBOSE=0
 USE_ROCKSDB=1
-ELECTRUMX_GIT_URL="https://github.com/johiruddinsultan/electrumX"
-ELECTRUMX_GIT_BRANCH=""
+quantumx_GIT_URL="https://github.com/johiruddinsultan/quantum"
+quantumx_GIT_BRANCH=""
 
 installer=$(realpath $0)
 
@@ -34,16 +34,16 @@ while [[ $# -gt 0 ]]; do
 		cat >&2 <<HELP
 Usage: install.sh [OPTIONS]
 
-Install electrumx.
+Install quantumx.
 
  -h --help                     Show this help
  -v --verbose				   Enable verbose logging
  -d --dbdir dir                Set database directory (default: /db/)
  --update                      Update previously installed version
- --update-python			   Install Python 3.7 and use with electrumx (doesn't remove system installation of Python 3)
+ --update-python			   Install Python 3.7 and use with quantumx (doesn't remove system installation of Python 3)
  --leveldb                     Use LevelDB instead of RocksDB
---electrumx-git-url url        Install ElectrumX from this URL instead
---electrumx-git-branch branch  Install specific branch of ElectrumX repository
+--quantumx-git-url url        Install quantumx from this URL instead
+--quantumx-git-branch branch  Install specific branch of quantumx repository
 HELP
 		exit 0
 		;;
@@ -63,12 +63,12 @@ HELP
 	    --leveldb)
 	    USE_ROCKSDB=0
 	    ;;
-		--electrumx-git-url)
-		ELECTRUMX_GIT_URL="$2"
+		--quantumx-git-url)
+		quantumx_GIT_URL="$2"
 		shift
 		;;
-		--electrumx-git-branch)
-		ELECTRUMX_GIT_BRANCH="$2"
+		--quantumx-git-branch)
+		quantumx_GIT_BRANCH="$2"
 		shift
 		;;
 	    *)
@@ -80,18 +80,18 @@ HELP
 done
 
 # redirect child output
-echo "" > /tmp/electrumx-installer-$$.log
-exec 3>&1 4>&2 2>/tmp/electrumx-installer-$$.log >&2
+echo "" > /tmp/quantumx-installer-$$.log
+exec 3>&1 4>&2 2>/tmp/quantumx-installer-$$.log >&2
 
 if [ $VERBOSE == 1 ]; then
-	tail -f /tmp/electrumx-installer-$$.log >&4 &
+	tail -f /tmp/quantumx-installer-$$.log >&4 &
 fi
 
 
 function _error {
-        if [ -s /tmp/electrumx-installer-$$.log ]; then
+        if [ -s /tmp/quantumx-installer-$$.log ]; then
 	  echo -en "\n---- LOG OUTPUT BELOW ----\n" >&4
-	  tail -n 50 /tmp/electrumx-installer-$$.log >&4
+	  tail -n 50 /tmp/quantumx-installer-$$.log >&4
 	  echo -en "\n---- LOG OUTPUT ABOVE ----\n" >&4
         fi
 	printf "\r${RED}ERROR:${NC}   ${1}\n" >&4
@@ -156,12 +156,12 @@ for _python in python3 python3.7; do
 done
 
 if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
-	if which electrumx_server > /dev/null 2>&1 && [ $UPDATE_PYTHON == 0 ]; then
-		_error "electrumx is already installed. Use $0 --update to... update." 9
+	if which quantumx_server > /dev/null 2>&1 && [ $UPDATE_PYTHON == 0 ]; then
+		_error "quantumx is already installed. Use $0 --update to... update." 9
 	fi
 	_status "Installing installer dependencies"
 	install_script_dependencies
-	_status "Adding new user for electrumx"
+	_status "Adding new user for quantumx"
 	add_user
 	_status "Creating database directory in $DB_DIR"
 	create_db_dir $DB_DIR
@@ -224,8 +224,8 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 		install_leveldb
 	fi
 
-	_status "Installing electrumx"
-	install_electrumx
+	_status "Installing quantumx"
+	install_quantumx
 
 	if [ $UPDATE_PYTHON == 0 ]; then
 
@@ -241,22 +241,22 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 		_status "Cleaning up"
 		package_cleanup	
 	fi
-	_info "electrumx has been installed successfully. Edit /etc/electrumx.conf to configure it."
+	_info "quantumx has been installed successfully. Edit /etc/quantumx.conf to configure it."
 else
-	_info "Updating electrumx"
+	_info "Updating quantumx"
 	i=0
-	while $python -m pip show electrumx; do
-	    $python -m pip uninstall -y electrumx || true
+	while $python -m pip show quantumx; do
+	    $python -m pip uninstall -y quantumx || true
 	    ((i++))
 	    if "$i" -gt 5; then
 	        break
 	    fi
 	done
-	if grep '/usr/local/bin/electrumx_server.py' /etc/systemd/system/electrumx.service; then
+	if grep '/usr/local/bin/quantumx_server.py' /etc/systemd/system/quantumx.service; then
 	    _info "Updating pre-1.5 systemd configuration to new binary names"
-		sed -i -- 's/_server.py/_server/g' /etc/systemd/system/electrumx.service
+		sed -i -- 's/_server.py/_server/g' /etc/systemd/system/quantumx.service
 		systemctl daemon-reload
 	fi
-	install_electrumx
-        _info "Installed $($python -m pip freeze | grep -i electrumx)"
+	install_quantumx
+        _info "Installed $($python -m pip freeze | grep -i quantumx)"
 fi

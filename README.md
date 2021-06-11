@@ -1,14 +1,14 @@
 # quantum-installer
 A script to automate the installation of quantumX
 
-Installing electrumx isn't really straight-forward (yet). You have to install the latest version of Python and various dependencies for
-one of the database engines. Then you have to integrate electrumx into your init system.
+Installing quantumx isn't really straight-forward (yet). You have to install the latest version of Python and various dependencies for
+one of the database engines. Then you have to integrate quantumx into your init system.
 
-`electrumx-installer` simplifies this process to running a single command. All that's left to do for you
-is to customise the configuration and to start electrumx.
+`quantumx-installer` simplifies this process to running a single command. All that's left to do for you
+is to customise the configuration and to start quantumx.
 
 ## Usage
-This installs electrumx using the default options:
+This installs quantumx using the default options:
 
     wget https://raw.githubusercontent.com/johiruddinsultan/quantum-installer/master/bootstrap.sh -O - | bash
 

@@ -1,4 +1,4 @@
-ERROR_EDGE="electrumX can currently be installed only on the edge Version of Alpine Linux"
+ERROR_EDGE="quantumx can currently be installed only on the edge Version of Alpine Linux"
 grep -q -F "/edge/main" /etc/apk/repositories > /dev/null || _error "${ERROR_EDGE}"
 grep -q -F "/edge/community" /etc/apk/repositories > /dev/null || _error "${ERROR_EDGE}"
 
@@ -10,12 +10,12 @@ function install_script_dependencies {
 	REPO="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 	grep -q -F "${REPO}" /etc/apk/repositories || echo "${REPO}" >> /etc/apk/repositories
 	apk update
-	$APK add --virtual electrumX-dep openssl wget gcc g++
+	$APK add --virtual quantumx-dep openssl wget gcc g++
 }
 
 function add_user {
-	adduser -D electrumx
-	id -u electrumx || _error "Could not add user account" 1
+	adduser -D quantumx
+	id -u quantumx || _error "Could not add user account" 1
 }
 
 function install_python37 {
@@ -23,7 +23,7 @@ function install_python37 {
 }
 
 function install_git {
-	$APK add --virtual electrumX-git git
+	$APK add --virtual quantumx-git git
 }
 
 function install_compiler {
@@ -32,7 +32,7 @@ function install_compiler {
 
 function install_rocksdb {
 	$APK add rocksdb
-	$APK add --virtual electrumX-db rocksdb-dev
+	$APK add --virtual quantumx-db rocksdb-dev
 }
 
 function install_leveldb {
@@ -50,8 +50,8 @@ function generate_cert {
 		return
 	fi
 	_DIR=$(pwd)
-	mkdir -p /etc/electrumx/
-	cd /etc/electrumx
+	mkdir -p /etc/quantumx/
+	cd /etc/quantumx
 	# openssl default configuration is incomplet under alpine.
 	# Hence adding this configruation from archlinux to allow certificat creation
 	# https://www.archlinux.org/packages/core/x86_64/openssl/
@@ -68,14 +68,14 @@ stateOrProvinceName_default	= Some-State
 	openssl req -new -key server.key -batch -out server.csr
 	openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt
 	rm server.csr
-	chown electrumx:electrumx /etc/electrumx -R
-	chmod 600 /etc/electrumx/server*
+	chown quantumx:quantumx /etc/quantumx -R
+	chmod 600 /etc/quantumx/server*
 	cd $_DIR
-	echo -e "\nSSL_CERTFILE=/etc/electrumx/server.crt" >> /etc/electrumx.conf
-	echo "SSL_KEYFILE=/etc/electrumx/server.key" >> /etc/electrumx.conf
-	echo "SERVICES=tcp://:50001,ssl://:50002,wss://:50004,rpc://" >> /etc/electrumx.conf
+	echo -e "\nSSL_CERTFILE=/etc/quantumx/server.crt" >> /etc/quantumx.conf
+	echo "SSL_KEYFILE=/etc/quantumx/server.key" >> /etc/quantumx.conf
+	echo "SERVICES=tcp://:50001,ssl://:50002,wss://:50004,rpc://" >> /etc/quantumx.conf
 }
 
 function package_cleanup {
-	$APK del electrumX-dep electrumX-python electrumX-git electrumX-db
+	$APK del quantumx-dep quantumx-python quantumx-git quantumx-db
 }

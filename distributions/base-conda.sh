@@ -1,10 +1,10 @@
 # This should be sourced after base.sh!
 
-eval "base_$(declare -f install_electrumx)"
-function install_electrumx {
-	base_install_electrumx
+eval "base_$(declare -f install_quantumx)"
+function install_quantumx {
+	base_install_quantumx
 	# We installed to /opt/python, so link it to $PATH
-	ln -s /opt/python/bin/electrumx* /usr/local/bin/
+	ln -s /opt/python/bin/quantumx* /usr/local/bin/
 }
 
 function install_python37 {
