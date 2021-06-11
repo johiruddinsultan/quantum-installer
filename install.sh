@@ -10,7 +10,7 @@ UPDATE_ONLY=0
 UPDATE_PYTHON=0
 VERBOSE=0
 USE_ROCKSDB=1
-quantumx_GIT_URL="https://github.com/johiruddinsultan/quantum"
+quantumx_GIT_URL="https://github.com/johiruddinsultan/quantumx"
 quantumx_GIT_BRANCH=""
 
 installer=$(realpath $0)
