@@ -1,4 +1,5 @@
 # Contains functions that should work on all POSIX-compliant systems
+
 function create_db_dir {
 	mkdir -p $1
 	chown quantumx:quantumx $1
