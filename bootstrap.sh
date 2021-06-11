@@ -1,18 +1,18 @@
 #!/bin/bash
-if [ -d ~/.electrumx-installer ]; then
+if [ -d ~/.quantumx-installer ]; then
     echo "~/.electrumx-installer already exists."
-    echo "Either delete the directory or run ~/.electrumx-installer/install.sh directly."
+    echo "Either delete the directory or run ~/.quantumx-installer/install.sh directly."  
     exit 1
 fi
 if which git > /dev/null 2>&1; then
-    git clone https://github.com/johiruddinsultan/electrumx-installer ~/.electrumx-installer
-    cd ~/.electrumx-installer/
+    git clone https://github.com/johiruddinsultan/quantumx-installer ~/.quantumx-installer
+    cd ~/.quantumx-installer/
 else
     which wget > /dev/null 2>&1 && which unzip > /dev/null 2>&1 || { echo "Please install git or wget and unzip" && exit 1 ; }
-    wget https://github.com/johiruddinsultan/electrumx-installer/archive/master.zip -O /tmp/electrumx-master.zip
-    unzip /tmp/electrumx-master.zip -d ~/.electrumx-installer
-    rm /tmp/electrumx-master.zip
-    cd ~/.electrumx-installer/electrumx-installer-master/ 
+    wget https://github.com/johiruddinsultan/quantumx-installer/archive/master.zip -O /tmp/quantumx-master.zip
+    unzip /tmp/quantumx-master.zip -d ~/.quantumx-installer
+    rm /tmp/quantumx-master.zip
+    cd ~/.quantumx-installer/quantumx-installer-master/ 
 fi
 if [[ $EUID -ne 0 ]]; then
     which sudo > /dev/null 2>&1 || { echo "You need to run this script as root" && exit 1 ; }
@@ -20,3 +20,5 @@ if [[ $EUID -ne 0 ]]; then
 else
     ./install.sh "$@"
 fi
+
+
