@@ -250,7 +250,7 @@ else
 	    ((i++))
 	    if "$i" -gt 5; then
 	        break
-	    fi
+	    fi  
 	done
 	if grep '/usr/local/bin/quantumx_server.py' /etc/systemd/system/quantumx.service; then
 	    _info "Updating pre-1.5 systemd configuration to new binary names"
