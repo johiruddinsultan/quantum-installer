@@ -252,9 +252,9 @@ else
 	        break
 	    fi  
 	done
-	if grep '/usr/local/bin/quantumx_server.py' /etc/systemd/system/quantumx_server.service; then
+	if grep '/usr/local/bin/quantumx_server.py' /etc/systemd/system/quantumx.service; then
 	    _info "Updating pre-1.5 systemd configuration to new binary names"
-		sed -i -- 's/_server.py/_server/g' /etc/systemd/system/quantumx_server.service
+		sed -i -- 's/_server.py/_server/g' /etc/systemd/system/quantumx.service
 		systemctl daemon-reload
 	fi
 	install_quantumx
