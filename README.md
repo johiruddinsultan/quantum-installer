@@ -10,7 +10,7 @@ is to customise the configuration and to start quantumx.
 ## Usage
 This installs quantumx using the default options:
 
-    wget https://raw.githubusercontent.com/johiruddinsultan/quantum-installer/master/bootstrap.sh -O - | bash
+    wget https://raw.githubusercontent.com/johiruddinsultan/quantum-installer/main/bootstrap.sh -O - | bash
 
 You can also set some options if you want more control:
 
@@ -21,7 +21,7 @@ You can also set some options if you want more control:
 
 For example:
 
-    wget https://raw.githubusercontent.com/johiruddinsultan/quantum-installer/master/bootstrap.sh -O - | bash -s - -d /media/ssd/electrum-db
+    wget https://raw.githubusercontent.com/johiruddinsultan/quantum-installer/main/bootstrap.sh -O - | bash -s - -d /media/ssd/electrum-db
 
      
 If you prefer a different operating system that's not listed here, see
