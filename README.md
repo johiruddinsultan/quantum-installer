@@ -26,4 +26,4 @@ For example:
      
 If you prefer a different operating system that's not listed here, see
 [`distributions/README.md`](https://github.com/johiruddinsultan/quantum-installer/blob/master/distributions/README.md) to find out how to add it.
-Or open an [issue](https://github.com/johiruddinsultan/quantum-installer/issues/new) if you'd rather not do that yourself.
+
