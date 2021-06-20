@@ -5,7 +5,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0,34m'
 NC='\033[0m' # No Color
 
-DB_DIR="/db"
+DB_DIR="/quantumdb"
 UPDATE_ONLY=0
 UPDATE_PYTHON=0
 VERBOSE=0
