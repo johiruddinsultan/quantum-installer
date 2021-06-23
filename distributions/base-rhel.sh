@@ -23,7 +23,7 @@ function install_git {
 }
 
 function install_rocksdb_dependencies {
-	# /usr/lib is not always included?
+	# /usr/lib is not always included?  ok
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
 	yum -y install snappy snappy-devel zlib zlib-devel bzip2-libs bzip2-devel libgflags-dev cmake3 make || _error "Could not install packages" 4
 	ln -s /usr/bin/cmake3 /usr/bin/cmake

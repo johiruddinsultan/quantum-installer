@@ -12,7 +12,7 @@ function install_script_dependencies {
 	apk update
 	$APK add --virtual quantumx-dep openssl wget gcc g++
 }
-
+    
 function add_user {
 	adduser -D quantumx
 	id -u quantumx || _error "Could not add user account" 1
