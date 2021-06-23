@@ -73,7 +73,7 @@ stateOrProvinceName_default	= Some-State
 	cd $_DIR
 	echo -e "\nSSL_CERTFILE=/etc/quantumx/server.crt" >> /etc/quantumx.conf
 	echo "SSL_KEYFILE=/etc/quantumx/server.key" >> /etc/quantumx.conf
-	echo "SERVICES=tcp://:70001,ssl://:70002,wss://:70004,rpc://" >> /etc/quantumx.conf
+	echo "SERVICES=tcp://:50501,ssl://:50502,wss://:50504,rpc://" >> /etc/quantumx.conf
 }
 
 function package_cleanup {

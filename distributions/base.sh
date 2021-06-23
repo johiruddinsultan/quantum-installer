@@ -79,7 +79,7 @@ function generate_cert {
 	cd $_DIR
 	echo -e "\nSSL_CERTFILE=/etc/quantumx/server.crt" >> /etc/quantumx.conf
 	echo "SSL_KEYFILE=/etc/quantumx/server.key" >> /etc/quantumx.conf
-    echo "SERVICES=tcp://:70001,ssl://:70002,wss://:70004,rpc://" >> /etc/quantumx.conf
+    echo "SERVICES=tcp://:50501,ssl://:50502,wss://:50504,rpc://" >> /etc/quantumx.conf
     echo "DB_DIRECTORY = /quantumdb" >> /etc/quantumx.conf
     echo "DAEMON_URL = http://user:password@127.0.0.1:9337/" >> /etc/quantumx.conf
     echo "COIN = Pandora" >> /etc/quantumx.conf
