@@ -21,10 +21,10 @@ cd "$(dirname "$0")"
 if which git > /dev/null 2>&1; then
     _version_now=$(git rev-parse HEAD)
     git pull > /dev/null 2>&1
-    if [ $_version_now != $(git rev-parse HEAD) ]; then
-        echo "Updated installer."
-        exec $installer "$@"
-    fi
+   # if [ $_version_now != $(git rev-parse HEAD) ]; then
+      #  echo "Updated installer."
+       W exec $installer "$@"
+   # fi
 fi
 
 while [[ $# -gt 0 ]]; do
