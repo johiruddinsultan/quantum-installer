@@ -23,7 +23,7 @@ if which git > /dev/null 2>&1; then
     git pull > /dev/null 2>&1
    # if [ $_version_now != $(git rev-parse HEAD) ]; then
       #  echo "Updated installer."
-       W exec $installer "$@"
+       # exec $installer "$@"
    # fi
 fi
 
